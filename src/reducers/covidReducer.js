@@ -4,7 +4,7 @@ const initialState = {
     nation:  [],
     countries: [],
     world: {},
-    chart: [],
+    chart: {},
     loading: false,
     error: ''
 };
@@ -41,7 +41,6 @@ export default function trendsReducer(state = initialState, action){
                 loading: false
             };
         case SET_CHART:
-            console.log('hola')
             return{
                 ...state,
                 chart: action.payload

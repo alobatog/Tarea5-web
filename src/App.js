@@ -6,6 +6,8 @@ import WorldInfo from './components/worldInfo';
 import NationInfo from './components/nationInfo';
 import ChooseNation from './components/chooseNation';
 import Chart from './components/chart';
+import NationsInfo from './components/nationsInfo';
+
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
                 <div className="column">
                   < Chart />
                 </div>
+                <aside>
+                  <NationsInfo />
+                </aside>  
               </div>
           </div>
         </div>

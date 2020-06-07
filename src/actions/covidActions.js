@@ -6,6 +6,7 @@ export const FETCHED_COUNTRIES = 'FETCHED_COUNTRIES';
 export const FETCHED_WORLD = 'FETCHED_WORLD';
 export const SET_CHART = 'SET_CHART';
 export const FAIL = 'FAIL';
+export const ADD_COUNTRY = "ADD_COUNTRY";
 
 export const fetchNation = (name, date) => dispatch => {
     dispatch({type: FETCHING});
@@ -40,3 +41,9 @@ export const setChart = (data) => ({
     type: SET_CHART,
     payload: data
 });
+
+
+export const addCountry = (country) => dispatch => {
+    dispatch({type: ADD_COUNTRY, payload: country})
+}
+    

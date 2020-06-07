@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchCountries, fetchNation } from '../actions/covidActions';
+import { fetchCountries, fetchNation, addCountry } from '../actions/covidActions';
 import {Typeahead} from 'react-bootstrap-typeahead';
 
 
@@ -32,6 +32,11 @@ function ChooseNation(props) {
         }
     }
 
+    const onSubmmit = (nation) => {
+        searchNation(nation, formatDate());
+        props.addCountry(nation[0].Slug);
+    }
+
     return (
         <div>    
             <Typeahead
@@ -42,7 +47,7 @@ function ChooseNation(props) {
             placeholder="Choose a country"
             selected={selected}
             />
-            <button className="button is-info" onClick={() => searchNation(selected, formatDate())} >Send</button>
+            <button className="button is-info" onClick={() => onSubmmit(selected)} >Send</button>
         </div>
         
     )
@@ -54,7 +59,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchCountries: () => dispatch(fetchCountries()),
-    fetchNation: (nation) => dispatch(fetchNation(nation))
+    fetchNation: (nation) => dispatch(fetchNation(nation)),
+    addCountry: (nation) => dispatch(addCountry(nation))
 });
     
 

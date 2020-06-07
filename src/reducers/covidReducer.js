@@ -1,8 +1,9 @@
-import {FETCHING, FETCHED_NATION, FAIL, FETCHED_COUNTRIES, FETCHED_WORLD, SET_CHART} from '../actions/covidActions';
+import {FETCHING, FETCHED_NATION, FAIL, FETCHED_COUNTRIES, FETCHED_WORLD, SET_CHART, ADD_COUNTRY} from '../actions/covidActions';
 
 const initialState = {
     nation:  [],
     countries: [],
+    selectedNations: [],
     world: {},
     chart: {},
     loading: false,
@@ -45,6 +46,12 @@ export default function trendsReducer(state = initialState, action){
                 ...state,
                 chart: action.payload
             }
+        case ADD_COUNTRY:
+            let nationsUpdated = [...state.selectedNations, action.payload]
+            return{
+                ...state,
+                selectedNations: nationsUpdated,
+            }    
         default: return state;
     }
 }

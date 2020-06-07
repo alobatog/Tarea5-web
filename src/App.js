@@ -18,11 +18,10 @@ function App() {
               <div className="container columns">
                 <aside className="menu">
                     < WorldInfo />
-                    < NationInfo />
                     < ChooseNation />
                 </aside>
                 <div className="column">
-                  < Chart />
+                  < Chart nationName={"Chile"}/>
                 </div>
                 <aside>
                   <NationsInfo />

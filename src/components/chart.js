@@ -40,8 +40,11 @@ function Chart(props) {
       }
 
     useEffect(() => {
-        props.setChart(parseChartData(props.nation))
-    }, [props.nation])
+        if(props.nations.length > 0){
+          let country = props.nations.filter(n => n[0].Country == props.selected)[0]
+          props.setChart(parseChartData(country))
+        }
+    }, [props.nations, props.selected])
 
 
     const chart = {
@@ -94,7 +97,9 @@ function Chart(props) {
 
 const mapStateToProps = state => ({
     chart: state.info.chart,
-    nation: state.info.nation
+    nation: state.info.nation,
+    nations: state.info.nations,
+    selected: state.info.selectedNation,
 });
 
 const mapDispatchToProps = dispatch => ({

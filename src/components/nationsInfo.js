@@ -4,6 +4,7 @@ import { Accordion } from 'react-bootstrap';
 import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import NationInfo from '../components/nationInfo';
+import { setSelected } from '../actions/covidActions';
 
 function NationsInfo(props){
 
@@ -13,17 +14,21 @@ function NationsInfo(props){
         setSelectedNations(props.selectedNations)
     });
 
+    function onSubmmit(nation) {
+        props.selectCountry(nation)
+    }
+
     return (
         <div>
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey="Chile">
                 {selectedNations.map((nation) => 
-                <Card>
+                <Card key={nation} onClick={()=>onSubmmit(nation)}>
                     <Accordion.Toggle as={Card.Header} eventKey={nation}>
                     <p className="menu-label">{nation}</p>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey={nation}>
                         <Card.Body>
-                            <NationInfo/>
+                            <NationInfo nationName={nation}/>
                         </Card.Body>    
                     </Accordion.Collapse>
                 </Card>
@@ -38,4 +43,8 @@ const mapStateToProps = state => ({
     selectedNations: state.info.selectedNations,
 });   
 
-export default connect(mapStateToProps)(NationsInfo);
+const mapDispatchToProps = dispatch => ({
+    selectCountry: (nation) => dispatch(setSelected(nation)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NationsInfo);

@@ -34,7 +34,7 @@ function ChooseNation(props) {
 
     const onSubmmit = (nation) => {
         searchNation(nation, formatDate());
-        props.addCountry(nation[0].Slug);
+        //props.addCountry(nation[0].Slug);
     }
 
     return (

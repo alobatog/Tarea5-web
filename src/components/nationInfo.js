@@ -6,12 +6,15 @@ function NationInfo(props) {
     const [nationInfo, setNationInfo] = useState({});
 
     useEffect(() => {
-        setNationInfo({ ...nationInfo, ...props.nation[props.nation.length - 1]})
-    }, [props.nation]);
+
+        if(props.nations.length > 0){
+            let country = props.nations.filter(n => n[0].Country == props.nationName)[0]
+            setNationInfo({ ...nationInfo, ...country[country.length - 1]})
+        }
+    }, [props.nations]);
 
     return (
         <div>    
-            <p className="menu-label">{nationInfo.Country} Info</p>
             <ul className="menu-list">
                 <li> Total Confirmed: {nationInfo.Confirmed} </li>
                 <li> Total Actives: {nationInfo.Active} </li>
@@ -24,6 +27,7 @@ function NationInfo(props) {
 
 const mapStateToProps = state => ({
     nation: state.info.nation,
+    nations: state.info.nations,
 });
 
  export default connect(mapStateToProps)(NationInfo);
